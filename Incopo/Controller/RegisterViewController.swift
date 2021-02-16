@@ -21,7 +21,15 @@ class RegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        firstNameTextField.delegate = self
+        lastNameTextField.delegate = self
+        
         self.hideKeyboardWhenTappedOutside()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = false
     }
     
     @IBAction func singUpPressed(_ sender: Any) {
@@ -82,11 +90,13 @@ class RegisterViewController: UIViewController {
                 ICPAlert.showAlert(on: self, with: "Registration Error".localized, message: registrationError.localizedDescription)
             } else {
                 
-                FirestoreManager.shared.collection(Constants.userCollection).document(email).setData([
-                    Constants.email: user.email,
-                    Constants.firstName: user.firstName,
-                    Constants.lastName: user.lastName,
-                    Constants.recents: []
+                let userID = FirestoreManager.shared.collection(FirebaseConstants.userCollection).document().documentID
+                FirestoreManager.shared.collection(FirebaseConstants.userCollection).document(userID).setData([
+                    FirebaseConstants.userID: userID,
+                    FirebaseConstants.email: user.email,
+                    FirebaseConstants.firstName: user.firstName,
+                    FirebaseConstants.lastName: user.lastName,
+                    FirebaseConstants.recents: []
                 ])
                 
                 self.clearFields()
@@ -103,5 +113,15 @@ class RegisterViewController: UIViewController {
         lastNameTextField.text = ""
         passwordTextField.text = ""
         confirmPasswordTextField.text = ""
+    }
+}
+
+extension RegisterViewController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let allowedCharacters = CharacterSet.letters
+        let characterSet = CharacterSet(charactersIn: string)
+        
+        return allowedCharacters.isSuperset(of: characterSet)
     }
 }
