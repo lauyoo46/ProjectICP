@@ -15,12 +15,13 @@ class SignInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.hideKeyboardWhenTappedOutside()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         clearFields()
+        self.navigationController?.navigationBar.isHidden = true 
     }
     
     @IBAction func loginPressed(_ sender: Any) {
