@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -329,10 +330,10 @@
             </objects>
             <point key="canvasLocation" x="-1826" y="3045"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Main Tab Bar View Controller-->
         <scene sceneID="69O-2j-CZE">
             <objects>
-                <tabBarController storyboardIdentifier="TabBarControllerID" id="ns5-MY-SOC" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarControllerID" id="ns5-MY-SOC" customClass="MainTabBarViewController" customModule="Incopo" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="biq-2F-VV1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -341,9 +342,9 @@
                     <connections>
                         <segue destination="Nll-VQ-zZA" kind="relationship" relationship="viewControllers" id="d9h-ec-pKG"/>
                         <segue destination="014-2A-ZZW" kind="relationship" relationship="viewControllers" id="Oi5-zx-XYx"/>
-                        <segue destination="qWe-m1-mvl" kind="relationship" relationship="viewControllers" id="DzP-Jk-oyd"/>
-                        <segue destination="LQL-MO-hky" kind="relationship" relationship="viewControllers" id="JKF-h8-McQ"/>
-                        <segue destination="F8B-4g-RsL" kind="relationship" relationship="viewControllers" id="FwI-ee-lKW"/>
+                        <segue destination="wDg-aI-RSy" kind="relationship" relationship="viewControllers" id="WsL-2w-aDx"/>
+                        <segue destination="LQL-MO-hky" kind="relationship" relationship="viewControllers" id="InB-8q-WZy"/>
+                        <segue destination="F8B-4g-RsL" kind="relationship" relationship="viewControllers" id="B5Z-vs-SgD"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JxY-L4-zsi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -372,37 +373,138 @@
         <!--Add Post View Controller-->
         <scene sceneID="0wi-Hu-QkB">
             <objects>
-                <viewController id="wDg-aI-RSy" customClass="AddPostViewController" customModule="Incopo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddPostControllerID" id="wDg-aI-RSy" customClass="AddPostViewController" customModule="Incopo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="K8a-t7-fE6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ppt-80-EHs">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="a0q-3L-94e">
+                                        <rect key="frame" x="10" y="275" width="394" height="402"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Poem Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rwy-ey-B5U">
+                                                <rect key="frame" x="0.0" y="0.0" width="394" height="34.333333333333336"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="25"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CM7-dJ-Yh1">
+                                                <rect key="frame" x="0.0" y="54.333333333333314" width="394" height="50"/>
+                                                <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="qtS-FY-Pjz"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="30"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Poem Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pZF-4e-hmD">
+                                                <rect key="frame" x="0.0" y="124.3333333333333" width="394" height="34.333333333333329"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="25"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Rot-TZ-7zD">
+                                                <rect key="frame" x="0.0" y="178.66666666666669" width="394" height="223.33333333333331"/>
+                                                <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                                                <color key="tintColor" systemColor="systemBackgroundColor"/>
+                                                <color key="textColor" systemColor="labelColor"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="22"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uDT-FC-u1X">
+                                        <rect key="frame" x="5" y="5" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="56j-tq-PHU"/>
+                                            <constraint firstAttribute="width" constant="40" id="dXA-hR-yQT"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal">
+                                            <imageReference key="image" image="xmark" catalog="system" symbolScale="large"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="B0Z-Tv-RKF" kind="unwind" unwindAction="unwindFromAdd:" id="RpM-M2-oiR"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NqX-MV-2uQ">
+                                        <rect key="frame" x="339" y="5" width="70" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="3WR-5m-luU"/>
+                                            <constraint firstAttribute="width" constant="70" id="HKb-d6-KLY"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="22"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Post">
+                                            <color key="titleColor" systemColor="labelColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="postButtonPressed:" destination="wDg-aI-RSy" eventType="touchUpInside" id="Afs-gR-VrI"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xMJ-NA-gIe">
+                                        <rect key="frame" x="10" y="60" width="394" height="200"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="OSK-rc-ORu">
+                                                <rect key="frame" x="0.0" y="1.6666666666666572" width="394" height="197"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="72M-J4-YrS"/>
+                                            <constraint firstItem="OSK-rc-ORu" firstAttribute="centerY" secondItem="xMJ-NA-gIe" secondAttribute="centerY" id="KwD-fR-mB5"/>
+                                            <constraint firstItem="OSK-rc-ORu" firstAttribute="leading" secondItem="xMJ-NA-gIe" secondAttribute="leading" id="ZmZ-7x-fKh"/>
+                                            <constraint firstAttribute="trailing" secondItem="OSK-rc-ORu" secondAttribute="trailing" id="bPb-L7-HmQ"/>
+                                            <constraint firstItem="OSK-rc-ORu" firstAttribute="top" secondItem="xMJ-NA-gIe" secondAttribute="top" id="f1f-LV-6kX"/>
+                                            <constraint firstItem="OSK-rc-ORu" firstAttribute="centerX" secondItem="xMJ-NA-gIe" secondAttribute="centerX" id="kD4-kF-gFf"/>
+                                            <constraint firstAttribute="bottom" secondItem="OSK-rc-ORu" secondAttribute="bottom" id="wz8-aa-BHR"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="xMJ-NA-gIe" firstAttribute="leading" secondItem="ppt-80-EHs" secondAttribute="leading" constant="10" id="7OP-ve-YsQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="a0q-3L-94e" secondAttribute="trailing" constant="10" id="DvZ-96-3YO"/>
+                                    <constraint firstItem="xMJ-NA-gIe" firstAttribute="top" secondItem="uDT-FC-u1X" secondAttribute="bottom" constant="15" id="Lsm-hN-4oa"/>
+                                    <constraint firstItem="uDT-FC-u1X" firstAttribute="top" secondItem="ppt-80-EHs" secondAttribute="top" constant="5" id="M1A-ON-FX5"/>
+                                    <constraint firstItem="a0q-3L-94e" firstAttribute="leading" secondItem="ppt-80-EHs" secondAttribute="leading" constant="10" id="OR6-Fg-DIr"/>
+                                    <constraint firstAttribute="trailing" secondItem="NqX-MV-2uQ" secondAttribute="trailing" constant="5" id="OdW-B4-sgg"/>
+                                    <constraint firstItem="NqX-MV-2uQ" firstAttribute="top" secondItem="ppt-80-EHs" secondAttribute="top" constant="5" id="P52-bQ-mIb"/>
+                                    <constraint firstItem="a0q-3L-94e" firstAttribute="top" secondItem="xMJ-NA-gIe" secondAttribute="bottom" constant="15" id="RTz-AE-JBI"/>
+                                    <constraint firstAttribute="trailing" secondItem="xMJ-NA-gIe" secondAttribute="trailing" constant="10" id="aVm-br-hYM"/>
+                                    <constraint firstItem="uDT-FC-u1X" firstAttribute="leading" secondItem="ppt-80-EHs" secondAttribute="leading" constant="5" id="f5y-98-r2e"/>
+                                    <constraint firstAttribute="bottom" secondItem="a0q-3L-94e" secondAttribute="bottom" constant="10" id="ia6-a4-E6X"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="QfZ-Qv-ULH"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="QfZ-Qv-ULH" firstAttribute="trailing" secondItem="ppt-80-EHs" secondAttribute="trailing" id="033-eF-bZo"/>
+                            <constraint firstItem="ppt-80-EHs" firstAttribute="leading" secondItem="QfZ-Qv-ULH" secondAttribute="leading" id="7EP-mj-3uI"/>
+                            <constraint firstItem="QfZ-Qv-ULH" firstAttribute="bottom" secondItem="ppt-80-EHs" secondAttribute="bottom" id="Amk-jY-6Xt"/>
+                            <constraint firstItem="ppt-80-EHs" firstAttribute="top" secondItem="QfZ-Qv-ULH" secondAttribute="top" id="I6E-Y0-yrM"/>
+                        </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="" image="plus" catalog="system" id="XEO-S1-w71"/>
                     <navigationItem key="navigationItem" id="Vmh-RO-jJa"/>
+                    <connections>
+                        <outlet property="poemImage" destination="OSK-rc-ORu" id="ibT-so-4IH"/>
+                        <outlet property="poemImageWrapperView" destination="xMJ-NA-gIe" id="bUQ-oA-J7z"/>
+                        <outlet property="poemText" destination="Rot-TZ-7zD" id="zMS-Ms-swc"/>
+                        <outlet property="poemTitle" destination="CM7-dJ-Yh1" id="NIg-vj-BiX"/>
+                        <outlet property="saveButton" destination="NqX-MV-2uQ" id="3xN-yf-e5A"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CdL-S3-FTE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="B0Z-Tv-RKF" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="342.02898550724638" y="2145.6521739130435"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="E2j-Ig-G3P">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qWe-m1-mvl" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="plus" catalog="system" id="Xfe-9p-lhd"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iUk-41-eZ2">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="wDg-aI-RSy" kind="relationship" relationship="rootViewController" id="bzo-7O-7rj"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="go1-a3-ekp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="342.02898550724638" y="1352.4456521739132"/>
+            <point key="canvasLocation" x="340.57971014492756" y="2145.6521739130435"/>
         </scene>
         <!--Favorites View Controller-->
         <scene sceneID="xxG-Nd-Mgl">
@@ -499,9 +601,11 @@
         <image name="house" catalog="system" width="128" height="106"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="person" catalog="system" width="128" height="117"/>
+        <image name="photo" catalog="system" width="128" height="93"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="star" catalog="system" width="128" height="116"/>
         <image name="text.bubble" catalog="system" width="128" height="110"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
@@ -510,6 +614,9 @@
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

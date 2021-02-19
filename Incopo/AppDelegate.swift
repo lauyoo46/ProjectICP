@@ -45,3 +45,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 }
+
+// MARK: - Tab Bar delegate
+
+extension AppDelegate: UITabBarControllerDelegate {
+    
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        
+        if viewController is AddPostViewController {
+            let addPostViewController = Storyboard.Main.addPost.viewController
+            tabBarController.present(addPostViewController, animated: true, completion: nil)
+            
+            return false
+        }
+        
+        return true
+    }
+}
