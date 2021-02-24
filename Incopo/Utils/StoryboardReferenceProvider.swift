@@ -41,6 +41,7 @@ struct Storyboard {
         static var storyboard: UIStoryboard { .main }
         
         case tabBar = "TabBarControllerID"
+        case addPost = "AddPostControllerID"
     }
     
 }

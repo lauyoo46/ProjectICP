@@ -12,11 +12,7 @@ class PostDetailViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var postContentTextView: UITextView!
     @IBOutlet weak var postView: UIView!
-    @IBOutlet weak var byAuthorLabel: UILabel! {
-        didSet {
-            
-        }
-    }
+    @IBOutlet weak var byAuthorLabel: UILabel!
     @IBOutlet weak var commentsTableView: UITableView!
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var noLikesLabel: UILabel!
@@ -141,7 +137,7 @@ class PostDetailViewController: UIViewController {
             
             if let firstName = data?[FirebaseConstants.firstName] as? String,
                let lastName = data?[FirebaseConstants.lastName] as? String {
-                self.authorName = firstName + " " + lastName
+                self.authorName = "\(firstName) \(lastName)"
             }
         }
     }

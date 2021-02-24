@@ -24,7 +24,6 @@ class User {
         recents: [String?],
         profilePicture: UIImage?
     ) {
-        
         self.email = email
         self.firstName = firstName
         self.lastName = lastName

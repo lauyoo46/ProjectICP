@@ -19,19 +19,29 @@ class NewsFeedViewController: UIViewController {
         
         collectionView.delegate = self
         collectionView.dataSource = self
+        self.tabBarController?.delegate = UIApplication.shared.delegate as? UITabBarControllerDelegate
         
+        createRefreshControl()
         fetchPosts()
+    }
+    
+    func createRefreshControl() {
+        
+        let refreshControl = UIRefreshControl()
+        collectionView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(fetchPosts), for: .valueChanged)
     }
     
     @objc func fetchPosts() {
         
-        FirestoreManager.shared.collection(FirebaseConstants.postCollection).getDocuments(completion: { (snapshot, error) in
+        FirestoreManager.shared.collection(FirebaseConstants.postCollection).addSnapshotListener { (querySnapshot, error) in
+            self.posts.removeAll()
             
             if error != nil {
                 ICPAlert.showAlert(on: self, with: "Newsfeed Error".localized, message: "No posts available".localized)
             }
             
-            guard let documents = snapshot?.documents else {
+            guard let documents = querySnapshot?.documents else {
                 return
             }
             
@@ -57,7 +67,7 @@ class NewsFeedViewController: UIViewController {
             }
             
             self.collectionView.reloadData()
-        })
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -72,6 +82,8 @@ class NewsFeedViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func unwindFromAdd(_ segue: UIStoryboardSegue) {}
 }
 
 extension NewsFeedViewController: UICollectionViewDataSource {

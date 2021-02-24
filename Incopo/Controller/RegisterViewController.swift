@@ -91,6 +91,8 @@ class RegisterViewController: UIViewController {
             } else {
                 
                 let userID = FirestoreManager.shared.collection(FirebaseConstants.userCollection).document().documentID
+                UserDefaults.standard.setValue(userID, forKey: email)
+                
                 FirestoreManager.shared.collection(FirebaseConstants.userCollection).document(userID).setData([
                     FirebaseConstants.userID: userID,
                     FirebaseConstants.email: user.email,

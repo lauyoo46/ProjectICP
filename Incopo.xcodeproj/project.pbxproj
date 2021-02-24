@@ -35,6 +35,7 @@
 		19D5EC1C25D1766D003EE7EA /* Incopo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 19D5EC1A25D1766D003EE7EA /* Incopo.xcdatamodeld */; };
 		19D5EC1E25D1766F003EE7EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19D5EC1D25D1766F003EE7EA /* Assets.xcassets */; };
 		19D5EC2125D1766F003EE7EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19D5EC1F25D1766F003EE7EA /* LaunchScreen.storyboard */; };
+		19F0F39C25DD638A00FB0C9C /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F0F39B25DD638A00FB0C9C /* MainTabBarViewController.swift */; };
 		EA8C17A005823F0269DCCEC4 /* Pods_Incopo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C5D0287CB2D7C63E70EEE82 /* Pods_Incopo.framework */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +74,7 @@
 		19D5EC1D25D1766F003EE7EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		19D5EC2025D1766F003EE7EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		19D5EC2225D1766F003EE7EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		19F0F39B25DD638A00FB0C9C /* MainTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		31767B01DB41BE042729AB24 /* Pods-Incopo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Incopo.debug.xcconfig"; path = "Target Support Files/Pods-Incopo/Pods-Incopo.debug.xcconfig"; sourceTree = "<group>"; };
 		5CBFB236B32AD8B4213C842B /* Pods-Incopo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Incopo.release.xcconfig"; path = "Target Support Files/Pods-Incopo/Pods-Incopo.release.xcconfig"; sourceTree = "<group>"; };
 		8C5D0287CB2D7C63E70EEE82 /* Pods_Incopo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Incopo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				1964592A25D2D9DD00BD4C55 /* ICPAlert.swift */,
+				19F0F39B25DD638A00FB0C9C /* MainTabBarViewController.swift */,
 			);
 			path = Customs;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 				1956C90525D42BD1006AD661 /* StoryboardReferenceProvider.swift in Sources */,
 				19A06DA925D2832200C30D41 /* RegisterViewController.swift in Sources */,
 				199D4C9025D3CAC800135E65 /* ProfileViewController.swift in Sources */,
+				19F0F39C25DD638A00FB0C9C /* MainTabBarViewController.swift in Sources */,
 				1964593025D2E06500BD4C55 /* NewsFeedViewController.swift in Sources */,
 				199D4C8A25D3CAAE00135E65 /* AddPostViewController.swift in Sources */,
 				19A7F4E525D3D656008C2FF3 /* Constants.swift in Sources */,
