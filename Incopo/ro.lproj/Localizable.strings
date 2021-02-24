@@ -6,18 +6,31 @@
   
 */
 
-"Incopo"                                = "Incopo";
-"Email"                                 = "Email";
-"Password"                              = "Parola";
-"Sign In"                               = "Logare";
-"Sign Up"                               = "Inregistrare";
-"Forgot Password?"                      = "Parola uitata?";
-"Login Error"                           = "Eroare la Logare";
-"Registration failed"                   = "Inregistrare esuata";
-"First Name must not contain decimals"  = "Prenumele nu poate contine cifre";
-"Last Name must not contain decimals"   = "Numele nu poate contine cifre";
-"Confirmation field must not be empty"  = "Campul de confirmare a parolei nu poate fi vid";
-"Passwords does not match"              = "Parolele nu se potrivesc";
-"Registration Error"                    = "Eroare la Inregistrare";
-"Registration Message"                  = "Mesaj inregistrare";
-"You registered successfully"           = "Inregistrare efectuata cu succes";
+"Incopo"                                    = "Incopo";
+"Email"                                     = "Email";
+"Password"                                  = "Parola";
+"Sign In"                                   = "Logare";
+"Sign Up"                                   = "Inregistrare";
+"Forgot Password?"                          = "Parola uitata?";
+"Login Error"                               = "Eroare la Logare";
+"Registration failed"                       = "Inregistrare esuata";
+"First Name must not contain decimals"      = "Prenumele nu poate contine cifre";
+"Last Name must not contain decimals"       = "Numele nu poate contine cifre";
+"Confirmation field must not be empty"      = "Campul de confirmare a parolei nu poate fi vid";
+"Passwords does not match"                  = "Parolele nu se potrivesc";
+"Registration Error"                        = "Eroare la Inregistrare";
+"Registration Message"                      = "Mesaj inregistrare";
+"You registered successfully"               = "Inregistrare efectuata cu succes";
+"OK"                                        = "Ok";
+"Empty field found"                         = "Camp necompletat";
+"Newsfeed Error"                            = "Eroare de Newsfeed";
+"No posts available"                        = "Nicio postare disponibila";
+"by "                                       = "de ";
+"Author Error"                              = "Eroare de autor";
+"Unable to retrieve author"                 = "Autorul nu a putut fi gasit";
+"Choose photo source"                       = "Alege sursa pentru fotografie";
+"Camera"                                    = "Camera";
+"Photo Library"                             = "Biblioteca foto";
+"Post error"                                = "Eroare la distribuire";
+"A poem can not have title or text empty"   = "Un poem nu poate avea titlu sau continut vid";
+"Image Error"                               = "Eroare la imagine";

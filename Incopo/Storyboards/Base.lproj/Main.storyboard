@@ -304,6 +304,10 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8LY-Ng-Bt7">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xUd-mE-nfX"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -322,13 +326,14 @@
                         <outlet property="noCommentsLabel" destination="7hR-pa-aoG" id="NDc-x9-ogd"/>
                         <outlet property="noLikesLabel" destination="xVN-om-QWe" id="0aq-aV-udh"/>
                         <outlet property="postContentTextView" destination="8Ua-WN-fam" id="D7N-sk-pxW"/>
+                        <outlet property="postPictureImageView" destination="8LY-Ng-Bt7" id="8BC-Ic-Nt8"/>
                         <outlet property="postView" destination="kKS-64-Y0p" id="L66-tI-Efr"/>
                         <outlet property="titleLabel" destination="lqG-nb-E21" id="n8z-V3-stA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JOr-HD-9jN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1826" y="3045"/>
+            <point key="canvasLocation" x="-1826" y="3052"/>
         </scene>
         <!--Main Tab Bar View Controller-->
         <scene sceneID="69O-2j-CZE">
@@ -431,10 +436,10 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NqX-MV-2uQ">
-                                        <rect key="frame" x="339" y="5" width="70" height="40"/>
+                                        <rect key="frame" x="289" y="5" width="120" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="3WR-5m-luU"/>
-                                            <constraint firstAttribute="width" constant="70" id="HKb-d6-KLY"/>
+                                            <constraint firstAttribute="width" constant="120" id="HKb-d6-KLY"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="22"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

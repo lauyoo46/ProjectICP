@@ -6,18 +6,31 @@
   
 */
 
-"Incopo"                                = "Incopo";
-"Email"                                 = "Email";
-"Password"                              = "Password";
-"Sign In"                               = "Sign In";
-"Sign Up"                               = "Sign Up";
-"Forgot Password?"                      = "Forgot password?";
-"Login Error"                           = "Error";
-"Registration failed"                   = "Registration failed";
-"First Name must not contain decimals"  = "First Name must not contain decimals";
-"Last Name must not contain decimals"   = "Last Name must not contain decimals";
-"Confirmation field must not be empty"  = "Confirmation field must not be empty";
-"Passwords does not match"              = "Passwords does not match";
-"Registration Error"                    = "Registration Error";
-"Registration Message"                  = "Registration Message";
-"You registered successfully"           = "You registered successfully";
+"Incopo"                                    = "Incopo";
+"Email"                                     = "Email";
+"Password"                                  = "Password";
+"Sign In"                                   = "Sign In";
+"Sign Up"                                   = "Sign Up";
+"Forgot Password?"                          = "Forgot password?";
+"Login Error"                               = "Error";
+"Registration failed"                       = "Registration failed";
+"First Name must not contain decimals"      = "First Name must not contain decimals";
+"Last Name must not contain decimals"       = "Last Name must not contain decimals";
+"Confirmation field must not be empty"      = "Confirmation field must not be empty";
+"Passwords does not match"                  = "Passwords does not match";
+"Registration Error"                        = "Registration Error";
+"Registration Message"                      = "Registration Message";
+"You registered successfully"               = "You registered successfully";
+"OK"                                        = "OK";
+"Empty field found"                         = "Empty field found";
+"Newsfeed Error"                            = "Newsfeed Error";
+"No posts available"                        = "No posts available";
+"by "                                       = "by ";
+"Author Error"                              = "Author Error";
+"Unable to retrieve author"                 = "Unable to retrieve author";
+"Choose photo source"                       = "Choose photo source";
+"Camera"                                    = "Camera";
+"Photo Library"                             = "Photo Library";
+"Post error"                                = "Post error";
+"A poem can not have title or text empty"   = "A poem can not have title or text empty";
+"Image Error"                               = "Image Error";

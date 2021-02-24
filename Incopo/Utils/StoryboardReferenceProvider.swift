@@ -20,7 +20,7 @@ extension StoryboardReferenceProvider {
     static var initialViewController: UIViewController? {
         let controller = storyboard.instantiateInitialViewController()
         if controller == nil {
-            fatalError("Unable to create View Controller".localized)
+            fatalError("Unable to create View Controller")
         }
         return controller
     }

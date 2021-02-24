@@ -9,6 +9,7 @@ import UIKit
 
 class PostDetailViewController: UIViewController {
     
+    @IBOutlet weak var postPictureImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var postContentTextView: UITextView!
     @IBOutlet weak var postView: UIView!
@@ -36,6 +37,7 @@ class PostDetailViewController: UIViewController {
         commentsTableView.dataSource = self
         
         configurePostData()
+        configurePostPicture()
         configurePostView()
         configureTitleLabel()
         configurePostContentView()
@@ -47,6 +49,7 @@ class PostDetailViewController: UIViewController {
     func configurePostData() {
         postContentTextView.isEditable = false
         
+        downloadImage(imageURL: post.imageURL)
         titleLabel.text = post.poemTitle
         postContentTextView.text = post.poemText
         fetchAuthor(authorID: post.authorID)
@@ -54,11 +57,46 @@ class PostDetailViewController: UIViewController {
         noCommentsLabel.text = String(post.numberOfComments)
     }
     
+    func downloadImage(imageURL: String) {
+        
+        if let url = URL(string: imageURL) {
+            let downloadTask = URLSession.shared.dataTask(with: url) { (data, _, _) in
+                
+                guard let imageData = data else {
+                    return
+                }
+                
+                OperationQueue.main.addOperation {
+                    guard let image = UIImage(data: imageData) else {
+                        return
+                    }
+                    
+                    self.postPictureImageView.image = image
+                }
+            }
+            
+            downloadTask.resume()
+        }
+    }
+    
+    func configurePostPicture() {
+        
+        postPictureImageView.translatesAutoresizingMaskIntoConstraints = false
+        postPictureImageView.contentMode = .scaleAspectFill
+        
+        NSLayoutConstraint.activate([
+            postPictureImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            postPictureImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            postPictureImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            postPictureImageView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 9.0/16.0)
+        ])
+    }
+    
     func configurePostView() {
         
         postView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            postView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            postView.topAnchor.constraint(equalTo: postPictureImageView.bottomAnchor, constant: 10),
             postView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             postView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             postView.bottomAnchor.constraint(equalTo: commentsTableView.topAnchor, constant: -10)
@@ -157,7 +195,7 @@ extension PostDetailViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let commentCell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as? CommentCell else {
+        guard let commentCell = tableView.dequeueReusableCell(withIdentifier: CellConstants.commentCell, for: indexPath) as? CommentCell else {
             return UITableViewCell()
         }
         

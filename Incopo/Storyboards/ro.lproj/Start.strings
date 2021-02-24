@@ -1,0 +1,57 @@
+
+/* Class = "UITextField"; text = "aaaaaa"; ObjectID = "8j3-Nw-vSy"; */
+"8j3-Nw-vSy.text" = "aaaaaa";
+
+/* Class = "UIButton"; normalTitle = "Logare"; ObjectID = "A05-UE-XR9"; */
+"A05-UE-XR9.normalTitle" = "Logare";
+
+/* Class = "UILabel"; text = "Email"; ObjectID = "DUn-nP-QeL"; */
+"DUn-nP-QeL.text" = "Email";
+
+/* Class = "UIButton"; normalTitle = "Inregistrare"; ObjectID = "Nus-jm-Gxa"; */
+"Nus-jm-Gxa.normalTitle" = "Inregistrare";
+
+/* Class = "UITextField"; text = "a@a.com"; ObjectID = "Rb7-bV-k5K"; */
+"Rb7-bV-k5K.text" = "a@a.com";
+
+/* Class = "UINavigationItem"; title = "Incopo"; ObjectID = "Xe7-gm-xEQ"; */
+"Xe7-gm-xEQ.title" = "Incopo";
+
+/* Class = "UIButton"; normalTitle = "Resetare parola"; ObjectID = "czD-Oq-mBk"; */
+"czD-Oq-mBk.normalTitle" = "Resetare parola";
+
+/* Class = "UILabel"; text = "Incopo"; ObjectID = "eH6-m1-8U5"; */
+"eH6-m1-8U5.text" = "Incopo";
+
+/* Class = "UINavigationItem"; title = "Incopo"; ObjectID = "eWr-t3-NOP"; */
+"eWr-t3-NOP.title" = "Incopo";
+
+/* Class = "UILabel"; text = "Parola"; ObjectID = "fBB-eZ-DUF"; */
+"fBB-eZ-DUF.text" = "Parola";
+
+/* Class = "UILabel"; text = "Emailul tau"; ObjectID = "gdy-lM-YY7"; */
+"gdy-lM-YY7.text" = "Emailul tau";
+
+/* Class = "UIButton"; normalTitle = "Parola uitata?"; ObjectID = "hSb-Vy-YIT"; */
+"hSb-Vy-YIT.normalTitle" = "Parola uitata?";
+
+/* Class = "UILabel"; text = "Prenume"; ObjectID = "iJM-lb-4zM"; */
+"iJM-lb-4zM.text" = "Prenume";
+
+/* Class = "UIButton"; normalTitle = "Inregistrare"; ObjectID = "iOO-cO-wZi"; */
+"iOO-cO-wZi.normalTitle" = "Inregistrare";
+
+/* Class = "UILabel"; text = "Confirmare Parola"; ObjectID = "jSs-g6-cxc"; */
+"jSs-g6-cxc.text" = "Confirmare Parola";
+
+/* Class = "UILabel"; text = "Parola"; ObjectID = "mI8-ip-3LD"; */
+"mI8-ip-3LD.text" = "Parola";
+
+/* Class = "UILabel"; text = "Email"; ObjectID = "ok8-C3-LlO"; */
+"ok8-C3-LlO.text" = "Email";
+
+/* Class = "UILabel"; text = "Inregistrare"; ObjectID = "r2Y-56-mI1"; */
+"r2Y-56-mI1.text" = "Inregistrare";
+
+/* Class = "UILabel"; text = "Nume"; ObjectID = "xdR-KH-0rJ"; */
+"xdR-KH-0rJ.text" = "Nume";

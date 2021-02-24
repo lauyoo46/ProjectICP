@@ -9,13 +9,15 @@ import UIKit
 
 class Post {
     
-    let postID: String
-    let poemTitle: String
-    let poemText: String
-    let authorID: String
+    var postID: String
+    var poemTitle: String
+    var poemText: String
+    var authorID: String
     var numberOfLikes: Int
     var numberOfComments: Int
     var comments: [String: String]
+    var imageURL: String
+    var timestamp: Int
     
     init() {
         self.postID = ""
@@ -25,6 +27,8 @@ class Post {
         self.numberOfLikes = 0
         self.numberOfComments = 0
         self.comments = [:]
+        self.imageURL = ""
+        self.timestamp = 0
     }
     
     init(postID: String,
@@ -33,7 +37,9 @@ class Post {
          authorID: String,
          numberOfLikes: Int,
          numberOfComments: Int,
-         comments: [String: String]) {
+         comments: [String: String],
+         imageURL: String,
+         timestamp: Int) {
         
         self.postID = postID
         self.poemTitle = poemTitle
@@ -42,5 +48,7 @@ class Post {
         self.numberOfLikes = numberOfLikes
         self.numberOfComments = numberOfComments
         self.comments = comments
+        self.imageURL = imageURL
+        self.timestamp = timestamp
     }
 }
