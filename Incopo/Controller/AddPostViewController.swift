@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseStorage
 
 class AddPostViewController: UIViewController {
 
@@ -14,6 +15,8 @@ class AddPostViewController: UIViewController {
     @IBOutlet weak var poemTitle: UITextField!
     @IBOutlet weak var poemText: UITextView!
     @IBOutlet weak var saveButton: UIButton!
+ 
+    var imagePicked = UIImage()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,17 +78,28 @@ class AddPostViewController: UIViewController {
         let currentUserID = fetchUserID()
         
         let postID = FirestoreManager.shared.collection(FirebaseConstants.postCollection).document().documentID
-        FirestoreManager.shared.collection(FirebaseConstants.postCollection).document(postID).setData([
-            FirebaseConstants.postID: postID,
-            FirebaseConstants.poemTitle: poemTitle,
-            FirebaseConstants.poemText: poemText,
-            FirebaseConstants.numberOfLikes: 0,
-            FirebaseConstants.numberOfComments: 0,
-            FirebaseConstants.comments: [:],
-            FirebaseConstants.authorID: currentUserID
-        ])
+        let timestamp = Int(Date().timeIntervalSince1970 * 1000)
         
-        dismiss(animated: true, completion: nil)
+        uploadImage(postID: postID, image: imagePicked) { [weak self] imageURL in
+            
+            guard let self = self else {
+                return
+            }
+            
+            FirestoreManager.shared.collection(FirebaseConstants.postCollection).document(postID).setData([
+                FirebaseConstants.postID: postID,
+                FirebaseConstants.poemTitle: poemTitle,
+                FirebaseConstants.poemText: poemText,
+                FirebaseConstants.numberOfLikes: 0,
+                FirebaseConstants.numberOfComments: 0,
+                FirebaseConstants.comments: [:],
+                FirebaseConstants.authorID: currentUserID,
+                FirebaseConstants.imageURL: imageURL,
+                FirebaseConstants.postTimestamp: timestamp
+            ])
+            
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     func fetchUserID() -> String {
@@ -103,9 +117,44 @@ extension AddPostViewController: UIImagePickerControllerDelegate {
             poemImage.contentMode = .scaleAspectFit
             poemImage.backgroundColor = .clear
             poemImage.clipsToBounds = true
+            
+            imagePicked = selectedImage
         }
         
         dismiss(animated: true, completion: nil)
+    }
+    
+    func uploadImage(postID: String, image: UIImage, completionHandler: @escaping (String) -> Void ) {
+        let imageID = postID
+        
+        let imageStorageReference = StorageManager.shared.storageReference.child("\(imageID).jpg")
+        let scaledImage = image.scale(newWidth: 640.0)
+        
+        guard let imageData = scaledImage.jpegData(compressionQuality: 0.9) else {
+            return
+        }
+        
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/jpg"
+        
+        let uploadTask = imageStorageReference.putData(imageData, metadata: metadata)
+        uploadTask.observe(.success) { (snapshot) in
+            
+            snapshot.reference.downloadURL { (url, _) in
+                guard let url = url else {
+                    return
+                }
+            
+                completionHandler(url.absoluteString)
+            }
+        }
+        
+        uploadTask.observe(.failure) { (snapshot) in
+            
+            if let error = snapshot.error {
+                ICPAlert.showAlert(on: self, with: "Image Error".localized, message: error.localizedDescription)
+            }
+        }
     }
 }
 

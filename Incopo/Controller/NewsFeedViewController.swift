@@ -34,7 +34,10 @@ class NewsFeedViewController: UIViewController {
     
     @objc func fetchPosts() {
         
-        FirestoreManager.shared.collection(FirebaseConstants.postCollection).addSnapshotListener { (querySnapshot, error) in
+        FirestoreManager.shared
+                        .collection(FirebaseConstants.postCollection)
+                        .order(by: FirebaseConstants.postTimestamp, descending: true)
+                        .addSnapshotListener { (querySnapshot, error) in
             self.posts.removeAll()
             
             if error != nil {
@@ -54,14 +57,18 @@ class NewsFeedViewController: UIViewController {
                    let authorID = data[FirebaseConstants.authorID] as? String,
                    let numberOfLikes = data[FirebaseConstants.numberOfLikes] as? Int,
                    let numberOfComments = data[FirebaseConstants.numberOfComments] as? Int,
-                   let comments = data[FirebaseConstants.comments] as? [String: String] {
+                   let comments = data[FirebaseConstants.comments] as? [String: String],
+                   let imageURL = data[FirebaseConstants.imageURL] as? String,
+                   let timestamp = data[FirebaseConstants.postTimestamp] as? Int {
                     let post = Post(postID: postID,
                                     poemTitle: poemTitle,
                                     poemText: poemText,
                                     authorID: authorID,
                                     numberOfLikes: numberOfLikes,
                                     numberOfComments: numberOfComments,
-                                    comments: comments)
+                                    comments: comments,
+                                    imageURL: imageURL,
+                                    timestamp: timestamp)
                     self.posts.append(post)
                 }
             }
