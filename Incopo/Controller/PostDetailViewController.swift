@@ -2,66 +2,26 @@
 //  PostDetailViewController.swift
 //  Incopo
 //
-//  Created by Laurentiu Ile on 12.02.2021.
+//  Created by Laurentiu Ile on 24.02.2021.
 //
 
 import UIKit
 
-class PostDetailViewController: UIViewController {
-    
-    @IBOutlet weak var postPictureImageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var postContentTextView: UITextView!
-    @IBOutlet weak var postView: UIView!
-    @IBOutlet weak var byAuthorLabel: UILabel!
-    @IBOutlet weak var commentsTableView: UITableView!
-    @IBOutlet weak var likeButton: UIButton!
-    @IBOutlet weak var noLikesLabel: UILabel!
-    @IBOutlet weak var commentButton: UIButton!
-    @IBOutlet weak var noCommentsLabel: UILabel!
-    @IBOutlet weak var favoriteButton: UIButton!
-    @IBOutlet weak var likesCommentsStackView: UIStackView!
-    @IBOutlet weak var likesCommentsFavoriteStackView: UIStackView!
+class PostDetailViewController: UITableViewController {
     
     var post = Post()
-    var authorName: String = "" {
-        didSet {
-            byAuthorLabel.text = "by ".localized + authorName
-        }
-    }
+    var authorName: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        commentsTableView.delegate = self
-        commentsTableView.dataSource = self
-        
-        configurePostData()
-        configurePostPicture()
-        configurePostView()
-        configureTitleLabel()
-        configurePostContentView()
-        configureAuthorLabel()
-        configureLikesCommentsFavoriteStackView()
-        configureCommentsTableView()
+
+//        configurePostPicture()
     }
     
-    func configurePostData() {
-        postContentTextView.isEditable = false
-        
-        downloadImage(imageURL: post.imageURL)
-        titleLabel.text = post.poemTitle
-        postContentTextView.text = post.poemText
-        fetchAuthor(authorID: post.authorID)
-        noLikesLabel.text = String(post.numberOfLikes)
-        noCommentsLabel.text = String(post.numberOfComments)
-    }
-    
-    func downloadImage(imageURL: String) {
+    func downloadImage(imageURL: String, completionHandler: @escaping (UIImage) -> Void) {
         
         if let url = URL(string: imageURL) {
             let downloadTask = URLSession.shared.dataTask(with: url) { (data, _, _) in
-                
                 guard let imageData = data else {
                     return
                 }
@@ -70,95 +30,14 @@ class PostDetailViewController: UIViewController {
                     guard let image = UIImage(data: imageData) else {
                         return
                     }
-                    
-                    self.postPictureImageView.image = image
+                    completionHandler(image)
                 }
             }
-            
             downloadTask.resume()
         }
     }
     
-    func configurePostPicture() {
-        
-        postPictureImageView.translatesAutoresizingMaskIntoConstraints = false
-        postPictureImageView.contentMode = .scaleAspectFill
-        
-        NSLayoutConstraint.activate([
-            postPictureImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            postPictureImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            postPictureImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            postPictureImageView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 9.0/16.0)
-        ])
-    }
-    
-    func configurePostView() {
-        
-        postView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            postView.topAnchor.constraint(equalTo: postPictureImageView.bottomAnchor, constant: 10),
-            postView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            postView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-            postView.bottomAnchor.constraint(equalTo: commentsTableView.topAnchor, constant: -10)
-        ])
-    }
-    
-    func configureTitleLabel() {
-        titleLabel.textAlignment = .center
-        
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: postView.topAnchor, constant: 5),
-            titleLabel.leadingAnchor.constraint(equalTo: postView.leadingAnchor, constant: 10),
-            titleLabel.trailingAnchor.constraint(equalTo: postView.trailingAnchor, constant: -10)
-        ])
-    }
-    
-    func configurePostContentView() {
-        postContentTextView.isScrollEnabled = false 
-        
-        postContentTextView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            postContentTextView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 15),
-            postContentTextView.leadingAnchor.constraint(equalTo: postView.leadingAnchor, constant: 10),
-            postContentTextView.trailingAnchor.constraint(equalTo: postView.trailingAnchor, constant: -10)
-        ])
-    }
-    
-    func configureAuthorLabel() {
-        byAuthorLabel.textAlignment = .left
-        
-        byAuthorLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            byAuthorLabel.topAnchor.constraint(equalTo: postContentTextView.bottomAnchor, constant: 10),
-            byAuthorLabel.leadingAnchor.constraint(equalTo: postView.leadingAnchor, constant: 10),
-            byAuthorLabel.trailingAnchor.constraint(equalTo: postView.trailingAnchor, constant: -10)
-        ])
-    }
-    
-    func configureLikesCommentsFavoriteStackView() {
-        likesCommentsFavoriteStackView.backgroundColor = .green
-        
-        likesCommentsFavoriteStackView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            likesCommentsFavoriteStackView.topAnchor.constraint(equalTo: byAuthorLabel.bottomAnchor, constant: 10),
-            likesCommentsFavoriteStackView.leadingAnchor.constraint(equalTo: postView.leadingAnchor, constant: 10),
-            likesCommentsFavoriteStackView.trailingAnchor.constraint(equalTo: postView.trailingAnchor, constant: -10),
-            likesCommentsFavoriteStackView.bottomAnchor.constraint(equalTo: postView.bottomAnchor, constant: -10)
-        ])
-    }
-    
-    func configureCommentsTableView() {
-        
-        commentsTableView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            commentsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            commentsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-            commentsTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10)
-        ])
-    }
-    
-    func fetchAuthor(authorID: String) {
+    func fetchAuthor(authorID: String, completionHandler: @escaping () -> Void) {
    
         let userRef = FirestoreManager.shared.collection(FirebaseConstants.userCollection).document(authorID)
         userRef.getDocument { (document, error) in
@@ -176,36 +55,125 @@ class PostDetailViewController: UIViewController {
             if let firstName = data?[FirebaseConstants.firstName] as? String,
                let lastName = data?[FirebaseConstants.lastName] as? String {
                 self.authorName = "\(firstName) \(lastName)"
+                completionHandler()
             }
         }
     }
-}
-
-extension PostDetailViewController: UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func configurePostPicture(postPictureImageView: UIImageView, headerView: UIView) {
+        
+        postPictureImageView.translatesAutoresizingMaskIntoConstraints = false
+        postPictureImageView.contentMode = .scaleAspectFill
+        
+        NSLayoutConstraint.activate([
+            postPictureImageView.topAnchor.constraint(equalTo: headerView.topAnchor),
+            postPictureImageView.leadingAnchor.constraint(equalTo: headerView.leadingAnchor),
+            postPictureImageView.trailingAnchor.constraint(equalTo: headerView.trailingAnchor),
+            postPictureImageView.heightAnchor.constraint(equalTo: headerView.widthAnchor, multiplier: 9.0/16.0)
+        ])
+    }
+    
+    // MARK: - Table view data source
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2 + post.comments.count
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        switch indexPath.row {
+        
+        case 0:
+            guard let imageCell = tableView.dequeueReusableCell(withIdentifier: CellConstants.imageCell, for: indexPath)
+                    as? ImageCell else {
+                return UITableViewCell()
+            }
+            
+            downloadImage(imageURL: post.imageURL) { (image) in
+                imageCell.postImageView.image = image
+            }
+            
+            return imageCell
+        
+        case 1:
+            guard let postDetailCell = tableView.dequeueReusableCell(withIdentifier: CellConstants.postDetailCell, for: indexPath)
+                    as? PostDetailCell else {
+                return UITableViewCell()
+            }
+            configurePostCellData(postDetailCell: postDetailCell)
+            return postDetailCell
+            
+        default:
+            guard let commentCell = tableView.dequeueReusableCell(withIdentifier: CellConstants.commentCell, for: indexPath)
+                    as? CommentCell else {
+                return UITableViewCell()
+            }
+
+            let commentsOwners = Array(post.comments.keys)
+            let currentCommentOwner = commentsOwners[indexPath.row - 2]
+            let commentsContent = Array(post.comments.values)
+            let currentCommentMessage = commentsContent[indexPath.row - 2]
+
+            commentCell.nameLabel.text = currentCommentOwner
+            commentCell.commentTextView.text = currentCommentMessage
+            return commentCell
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-}
-
-extension PostDetailViewController: UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return post.numberOfComments
+    func configurePostCellData(postDetailCell: PostDetailCell) {
+        postDetailCell.postContentTextView.isEditable = false
+        
+        postDetailCell.titleLabel.text = post.poemTitle
+        postDetailCell.postContentTextView.text = post.poemText
+        fetchAuthor(authorID: post.authorID) {
+            postDetailCell.byAuthorLabel.text = "by ".localized + self.authorName
+        }
+        postDetailCell.noLikesLabel.text = String(post.numberOfLikes)
+        postDetailCell.noCommentsLabel.text = String(post.numberOfComments)
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let commentCell = tableView.dequeueReusableCell(withIdentifier: CellConstants.commentCell, for: indexPath) as? CommentCell else {
-            return UITableViewCell()
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 0 {
+            return UIScreen.main.bounds.width * 9.0 / 16.0
         }
         
-        let commentsOwners = Array(post.comments.keys)
-        let currentCommentOwner = commentsOwners[indexPath.row]
-        let commentsContent = Array(post.comments.values)
-        let currentCommentMessage = commentsContent[indexPath.row]
-        
-        commentCell.nameLabel.text = currentCommentOwner
-        commentCell.commentTextView.text = currentCommentMessage
-        return commentCell
+        return UITableView.automaticDimension
     }
+    
+//    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return UIScreen.main.bounds.width * 9.0/16.0
+//    }
+    
+//    override func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+//        return UIScreen.main.bounds.width * 9.0 / 16.0
+//    }
+
+//    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let postPictureImageView = UIImageView()
+//
+//        downloadImage(imageURL: post.imageURL, postPictureImageView: postPictureImageView)
+//
+//        let headerView = UIView()
+//        headerView.backgroundColor = .white
+//        headerView.addSubview(postPictureImageView)
+//
+//        //configurePostPicture(postPictureImageView: postPictureImageView, headerView: headerView)
+//
+//        headerView.translatesAutoresizingMaskIntoConstraints = false
+//        postPictureImageView.translatesAutoresizingMaskIntoConstraints = false
+//
+//        NSLayoutConstraint.activate([
+//            postPictureImageView.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 10),
+//            postPictureImageView.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 10),
+//            postPictureImageView.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -10),
+//            postPictureImageView.bottomAnchor.constraint(equalTo: headerView.bottomAnchor, constant: -10),
+//            postPictureImageView.heightAnchor.constraint(equalToConstant: 300)
+//        ])
+//
+//        return headerView
+//    }
 }

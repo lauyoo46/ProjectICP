@@ -33,7 +33,9 @@ struct FirebaseConstants {
 
 struct CellConstants {
     
+    static let imageCell = "ImageCell"
     static let postCell = "PostCell"
+    static let postDetailCell = "PostDetailCell"
     static let commentCell = "CommentCell"
 }
 
